@@ -4,6 +4,9 @@
 
 ![Explain My Model Overview](assets/explain_my_model_overview.png)
 
+*High-level overview of the Explain My Model XAI toolkit, showing global,
+local, and counterfactual explanations for machine learning models.*
+
 ---
 
 ## 🚀 What This Project Does
@@ -145,6 +148,36 @@ Global & Local Explanations
 - Fairness & bias analysis
 - Medical imaging XAI
 - Interactive dashboard (Streamlit)
+
+🧠 What if the dataset is multiclass?
+- Current version supports binary classification.
+- Multiclass support can be enabled by selecting a target class in SHAP.
+
+## Using Your Own Dataset
+
+The toolkit is designed to work with any tabular dataset.
+
+### Requirements
+- Data in pandas DataFrame format
+- Numerical features
+- sklearn-compatible trained model
+
+### Steps
+```python
+# 1. Load data
+X = df.drop(columns=["target"])
+y = df["target"]
+
+# 2. Train model
+model.fit(X_train, y_train)
+
+# 3. Initialize explainer
+explainer = Explainer(model, X_train)
+
+# 4. Generate explanations
+explainer.global_feature_importance()
+explainer.explain_instance(X_test.iloc[0])
+explainer.counterfactual(X_test.iloc[0])
 
 📌 Author
 
