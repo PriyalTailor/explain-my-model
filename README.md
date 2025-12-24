@@ -123,8 +123,8 @@ explainer.counterfactual(sample_instance)
 📈 Example Visuals
 Global & Local Explanations
 <p align="center">
-  <img src="assets/global_importance.png" width="400" />
-  <img src="assets/local_waterfall.png" width="400" />
+  <img src="assets/global_importance.png" width="400", height="1500" />
+  <img src="assets/local_waterfall.png" width="400", height="1500" />
 </p>
 
 🧪 Tech Stack
