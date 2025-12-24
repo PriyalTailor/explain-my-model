@@ -9,3 +9,10 @@ Example output:
 - Mean |SHAP value| per feature
 - SHAP summary plots
 
+## Local Explanations
+Instance-level explanations identify why a specific prediction was made.
+The toolkit provides:
+- Feature contribution tables
+- SHAP waterfall plots
+- Human-readable explanations
+

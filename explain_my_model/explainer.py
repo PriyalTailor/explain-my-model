@@ -48,5 +48,58 @@ class Explainer:
             .sort_values(by="importance", ascending=False)
             .head(max_display)
         )
+    
+    def explain_instance(self, instance):
+        """
+        Explains a single prediction using SHAP values.
+        Robust to all SHAP output shapes.
+        """
+        instance_df = pd.DataFrame([instance], columns=self.X_train.columns)
+
+        shap_values = self.explainer(instance_df)
+
+        values = shap_values.values
+
+        # ---- SHAPE HANDLING (CRITICAL) ----
+        # Possible shapes:
+        # (1, n_features)
+        # (1, n_features, n_classes)
+        # (1, n_classes, n_features)
+
+        if values.ndim == 3:
+            # If shape is (1, n_features, n_classes)
+            if values.shape[1] == len(self.X_train.columns):
+                values = values[0, :, 1]   # take positive class
+            else:
+                values = values[0, 1, :]   # alternative layout
+        else:
+            values = values[0]
+
+        values = values.flatten()  # ensure 1D
+
+        explanation = pd.DataFrame({
+            "feature": self.X_train.columns,
+            "shap_value": values
+        }).sort_values(by="shap_value", ascending=False)
+
+        return explanation
+    
+    def explain_instance_text(self, instance, top_k=5):
+        """
+        Returns a human-readable explanation.
+        """
+        explanation = self.explain_instance(instance).head(top_k)
+
+        text = "Top factors influencing the prediction:\n"
+        for _, row in explanation.iterrows():
+            direction = "increased" if row["shap_value"] > 0 else "decreased"
+            text += f"- {row['feature']} {direction} the risk\n"
+
+        return text
+
+
+
+
+
 
 
