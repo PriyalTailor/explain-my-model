@@ -149,7 +149,7 @@ Global & Local Explanations
 - Medical imaging XAI
 - Interactive dashboard (Streamlit)
 
-🧠 What if the dataset is multiclass?
+## What if the dataset is multiclass?
 - Current version supports binary classification.
 - Multiclass support can be enabled by selecting a target class in SHAP.
 
@@ -178,6 +178,7 @@ explainer = Explainer(model, X_train)
 explainer.global_feature_importance()
 explainer.explain_instance(X_test.iloc[0])
 explainer.counterfactual(X_test.iloc[0])
+```
 
 📌 Author
 
