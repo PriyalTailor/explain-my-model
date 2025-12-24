@@ -16,3 +16,8 @@ The toolkit provides:
 - SHAP waterfall plots
 - Human-readable explanations
 
+## Counterfactual Explanations
+The toolkit generates counterfactual examples showing minimal feature
+changes required to alter model predictions.
+
+These explanations support actionable decision-making and model auditing.

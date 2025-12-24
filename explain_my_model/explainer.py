@@ -96,6 +96,39 @@ class Explainer:
             text += f"- {row['feature']} {direction} the risk\n"
 
         return text
+    
+    def counterfactual(self, instance, step=0.1, max_iter=50):
+        """
+        Generates a simple counterfactual by perturbing features.
+        """
+        instance_cf = instance.copy()
+        original_pred = self.model.predict(pd.DataFrame([instance], columns=self.X_train.columns))[0]
+
+        for _ in range(max_iter):
+            for feature in self.X_train.columns:
+                # Try decreasing feature
+                instance_cf[feature] -= step
+                new_pred = self.model.predict(
+                    pd.DataFrame([instance_cf], columns=self.X_train.columns)
+                )[0]
+
+                if new_pred != original_pred:
+                    return instance_cf
+
+                # Try increasing feature
+                instance_cf[feature] += 2 * step
+                new_pred = self.model.predict(
+                    pd.DataFrame([instance_cf], columns=self.X_train.columns)
+                )[0]
+
+                if new_pred != original_pred:
+                    return instance_cf
+
+                # Restore original
+                instance_cf[feature] -= step
+
+        return None
+
 
 
 
