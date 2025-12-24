@@ -126,7 +126,10 @@ explainer.counterfactual(sample_instance)
 
 📈 Example Visuals
 Global & Local Explanations
-<p align="center"> <img src="assets/global_importance.png" width="45%" /> <img src="assets/local_waterfall.png" width="45%" /> </p>
+<p align="center">
+  <img src="assets/global_importance.png" width="400" />
+  <img src="assets/local_waterfall.png" width="400" />
+</p>
 
 🧪 Tech Stack
 - Python
@@ -151,12 +154,10 @@ Global & Local Explanations
 - Interactive dashboard (Streamlit)
 
 📌 Author
-
 Priyal Tailor
 Machine Learning | Explainable AI | Healthcare ML
 
 ⭐ Support
-
 If you find this project useful:
 - Give it a ⭐
 - Fork it
