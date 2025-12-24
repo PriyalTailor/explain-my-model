@@ -8,11 +8,15 @@ class Explainer:
     """
 
     def __init__(self, model, X_train):
+        if model is None:
+            raise ValueError("Model must not be None")
+        if X_train is None or len(X_train) == 0:
+            raise ValueError("X_train must contain data")
+
         self.model = model
         self.X_train = X_train
-
-        # SHAP explainer (Tree-based for RandomForest)
         self.explainer = shap.TreeExplainer(self.model)
+
 
     def global_feature_importance(self, max_display=10):
         """
@@ -128,6 +132,14 @@ class Explainer:
                 instance_cf[feature] -= step
 
         return None
+    
+    def predict(self, instance):
+        """
+        Returns model prediction for a single instance.
+        """
+        instance_df = pd.DataFrame([instance], columns=self.X_train.columns)
+        return self.model.predict(instance_df)[0]
+
 
 
 
