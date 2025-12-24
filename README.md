@@ -2,6 +2,8 @@
 
 > A lightweight, model-agnostic Explainable AI (XAI) toolkit to understand **why** machine learning models make specific predictions.
 
+![Explain My Model Overview](assets/explain_my_model_overview.png)
+
 ---
 
 ## 🚀 What This Project Does
@@ -11,11 +13,6 @@
 - Explain **individual predictions**
 - Answer **“what needs to change to flip the prediction?”**
 - Build **trustworthy and transparent ML systems**
-
-Designed for:
-- Machine Learning Engineers
-- Researchers
-- Healthcare & regulated ML use-cases
 
 ---
 
@@ -42,23 +39,19 @@ Used to demonstrate **real-world explainability**.
 
 ## 🧩 Project Structure
 
-explain-my-model/
-│
-├── explain_my_model/
-│ ├── init.py
-│ ├── explainer.py # Core XAI logic
-│ └── utils.py
-│
-├── notebooks/
-│ └── demo.ipynb # End-to-end demo
-│
-├── assets/ # Plots & screenshots
-│
+```text
+explain-my-model
+├── explain_my_model
+│   ├── __init__.py
+│   ├── explainer.py
+│   └── utils.py
+├── notebooks
+│   └── demo.ipynb
+├── assets
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-
-
+```
 ---
 
 ## ⚙️ Installation
@@ -154,6 +147,7 @@ Global & Local Explanations
 - Interactive dashboard (Streamlit)
 
 📌 Author
+
 Priyal Tailor
 Machine Learning | Explainable AI | Healthcare ML
 
